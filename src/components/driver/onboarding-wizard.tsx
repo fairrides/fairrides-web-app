@@ -22,6 +22,7 @@ interface OnboardingWizardProps {
     onBack: () => void;
     onSubmit: () => void;
     isValid: boolean;
+    isSubmitting?: boolean;
 }
 
 export default function OnboardingWizard({
@@ -31,6 +32,7 @@ export default function OnboardingWizard({
     onBack,
     onSubmit,
     isValid,
+    isSubmitting = false,
 }: OnboardingWizardProps) {
     const isLastStep = currentStep === STEPS.length;
 
@@ -45,8 +47,8 @@ export default function OnboardingWizard({
                                 <div className="flex flex-col items-center relative">
                                     <div
                                         className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all ${currentStep >= step.id
-                                                ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-110"
-                                                : "bg-gray-300 text-gray-600"
+                                            ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-110"
+                                            : "bg-gray-300 text-gray-600"
                                             }`}
                                     >
                                         {currentStep > step.id ? (
@@ -105,8 +107,8 @@ export default function OnboardingWizard({
                             onClick={onSubmit}
                             disabled={!isValid}
                             className={`px-8 py-3 rounded-xl font-bold text-white transition-all ${isValid
-                                    ? "bg-gradient-to-r from-green-600 to-green-700 hover:shadow-lg hover:scale-105"
-                                    : "bg-gray-400 cursor-not-allowed"
+                                ? "bg-gradient-to-r from-green-600 to-green-700 hover:shadow-lg hover:scale-105"
+                                : "bg-gray-400 cursor-not-allowed"
                                 }`}
                         >
                             Submit Application →
@@ -116,8 +118,8 @@ export default function OnboardingWizard({
                             onClick={onNext}
                             disabled={!isValid}
                             className={`px-8 py-3 rounded-xl font-bold text-white transition-all ${isValid
-                                    ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:scale-105"
-                                    : "bg-gray-400 cursor-not-allowed"
+                                ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:scale-105"
+                                : "bg-gray-400 cursor-not-allowed"
                                 }`}
                         >
                             Next →

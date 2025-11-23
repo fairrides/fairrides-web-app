@@ -26,7 +26,7 @@ export default function Home() {
         {/* Role Selection Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-16">
           {/* Passenger Card */}
-          <Link href="/passenger">
+          <Link href="/auth/rider">
             <div className="group relative bg-white/10 backdrop-blur-md rounded-3xl p-10 border border-white/20 hover:bg-white/20 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -53,7 +53,7 @@ export default function Home() {
           </Link>
 
           {/* Driver Card */}
-          <Link href="/driver">
+          <Link href="/auth/driver">
             <div className="group relative bg-white/10 backdrop-blur-md rounded-3xl p-10 border border-white/20 hover:bg-white/20 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 

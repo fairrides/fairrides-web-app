@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import OnboardingWizard from "../../../components/driver/onboarding-wizard";
 import IdentityVerificationStep from "../../../components/driver/identity-verification-step";
@@ -12,6 +12,7 @@ export default function OnboardingPage() {
     const router = useRouter();
     const [currentStep, setCurrentStep] = useState(1);
     const [isStepValid, setIsStepValid] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleNext = () => {
         if (currentStep < 4) {
@@ -27,9 +28,10 @@ export default function OnboardingPage() {
         }
     };
 
-    const handleSubmit = () => {
-        // In a real app, this would submit to backend
-        console.log("Application submitted!");
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+        // In a real app, this would submit to backend and update the DriverProfile
+        // linked to the current user.
 
         // Simulate submission and redirect to dashboard
         setTimeout(() => {
@@ -59,6 +61,7 @@ export default function OnboardingPage() {
             onBack={handleBack}
             onSubmit={handleSubmit}
             isValid={isStepValid}
+            isSubmitting={isSubmitting}
         >
             {renderStep()}
         </OnboardingWizard>

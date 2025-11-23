@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String   // Hashed
+  role      String   // "RIDER" | "DRIVER"
+  createdAt DateTime @default(now())
+
+  // Profile Data
+  riderProfile  RiderProfile?
+  driverProfile DriverProfile?
+}
+
+model RiderProfile {
+  id        String  @id @default(uuid())
+  userId    String  @unique
+  user      User    @relation(fields: [userId], references: [id])
+  
+  dob       String?
+  gender    String?
+  aboutMe   String? // "Fun info/bio"
+}
+
+model DriverProfile {
+  id        String  @id @default(uuid())
+  userId    String  @unique
+  user      User    @relation(fields: [userId], references: [id])
+  
+  // Onboarding Data
+  licenseNumber String?
+  carModel      String?
+  plateNumber   String?
+  isVerified    Boolean @default(false)
+}
