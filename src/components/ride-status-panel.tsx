@@ -26,7 +26,7 @@ export default function RideStatusPanel({
     if (status === "IDLE") return null;
 
     return (
-        <div className="absolute bottom-0 left-0 w-full bg-white p-6 rounded-t-3xl shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-20 md:w-96 md:top-4 md:left-4 md:bottom-auto md:rounded-2xl md:shadow-xl border border-gray-100">
+        <div className="absolute bottom-0 left-0 w-full bg-white p-6 pb-24 rounded-t-3xl shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-[60] md:w-96 md:top-4 md:left-4 md:bottom-auto md:rounded-2xl md:shadow-xl md:pb-6 border border-gray-100">
             {status === "SEARCHING" && (
                 <div className="flex flex-col items-center space-y-4 py-4">
                     <div className="w-16 h-16 border-4 border-black border-t-transparent rounded-full animate-spin" />

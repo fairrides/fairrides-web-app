@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import GoOnlineButton from "../../../components/driver/go-online-button";
 import RideOfferModal from "../../../components/driver/ride-offer-modal";
+import DriverNav from "../../../components/navigation/driver-nav";
 
 const MapComponent = dynamic(() => import("../../../components/map"), {
     ssr: false,
@@ -145,6 +146,9 @@ export default function DriverDashboard() {
                     onDecline={handleDeclineRide}
                 />
             )}
+
+            {/* Bottom Navigation */}
+            <DriverNav />
         </main>
     );
 }

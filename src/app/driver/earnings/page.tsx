@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import SparklineChart from "../../../components/shared/sparkline-chart";
+import DriverNav from "../../../components/navigation/driver-nav";
 
 type TimePeriod = "today" | "week" | "month";
 
@@ -252,6 +253,9 @@ export default function DriverEarningsPortfolio() {
                     </p>
                 </div>
             </div>
+
+            {/* Bottom Navigation */}
+            <DriverNav />
         </main>
     );
 }

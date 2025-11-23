@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import SparklineChart from "../../../components/shared/sparkline-chart";
+import PassengerNav from "../../../components/navigation/passenger-nav";
 
 type TimePeriod = "today" | "week" | "month" | "year" | "lifetime";
 
@@ -200,6 +201,9 @@ export default function SavingsPortfolio() {
                     </p>
                 </div>
             </div>
+
+            {/* Bottom Navigation */}
+            <PassengerNav />
         </main>
     );
 }

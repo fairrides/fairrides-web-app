@@ -9,6 +9,7 @@ import RideStatusPanel, {
 } from "../../components/ride-status-panel";
 import { Place, getRoute, reverseGeocode } from "../../lib/mapbox";
 import AdBanner from "../../components/ad-banner";
+import PassengerNav from "../../components/navigation/passenger-nav";
 
 const MapComponent = dynamic(() => import("../../components/map"), {
     ssr: false,
@@ -240,13 +241,7 @@ export default function PassengerPage() {
                 onCancel={handleCancelRide}
             />
 
-            {/* Ad after ride completion */}
-            {rideStatus === "COMPLETED" && (
-                <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-md px-4">
-                    <AdBanner size="interstitial" />
-                </div>
-            )}
-
+            {/* Map Component */}
             <div className="w-full h-full">
                 <MapComponent
                     pickupCoordinates={
@@ -260,6 +255,9 @@ export default function PassengerPage() {
                     onMapClick={handleMapClick}
                 />
             </div>
+
+            {/* Bottom Navigation */}
+            <PassengerNav />
         </main>
     );
 }
