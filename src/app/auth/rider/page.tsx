@@ -2,10 +2,30 @@
 
 import { useState } from "react";
 import AuthForm from "../../../components/auth/auth-form";
-import { registerRider, login } from "../../actions/auth";
+import { signUpRider, signIn } from "../../../lib/auth";
 
 export default function RiderAuthPage() {
     const [mode, setMode] = useState<"login" | "register">("login");
+
+    const handleRegister = async (formData: FormData) => {
+        const result = await signUpRider({
+            username: formData.get('username') as string,
+            password: formData.get('password') as string,
+            dob: formData.get('dob') as string,
+            gender: formData.get('gender') as string,
+            aboutMe: formData.get('aboutMe') as string,
+        });
+        return result;
+    };
+
+    const handleLogin = async (formData: FormData) => {
+        const result = await signIn({
+            username: formData.get('username') as string,
+            password: formData.get('password') as string,
+            role: 'RIDER',
+        });
+        return result;
+    };
 
     return (
         <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
@@ -37,7 +57,8 @@ export default function RiderAuthPage() {
                 <AuthForm
                     type={mode}
                     role="RIDER"
-                    action={mode === "login" ? login : registerRider}
+                    onSubmit={mode === "login" ? handleLogin : handleRegister}
+                    redirectTo="/passenger"
                 />
             </div>
         </main>

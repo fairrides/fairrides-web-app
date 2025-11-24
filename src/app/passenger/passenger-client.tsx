@@ -224,16 +224,6 @@ export default function PassengerClient({ user }: PassengerClientProps) {
                     <div className="pointer-events-auto">
                         <AdBanner size="banner" />
                     </div>
-
-                    {/* Welcome Message */}
-                    <div className="bg-white/90 backdrop-blur-sm mx-4 mt-2 p-3 rounded-xl shadow-sm border border-gray-100 pointer-events-auto">
-                        <h2 className="font-bold text-gray-800">Welcome, {user.username}! 👋</h2>
-                        {user.riderProfile?.aboutMe && (
-                            <p className="text-xs text-gray-500 mt-1 line-clamp-1">
-                                "{user.riderProfile.aboutMe}"
-                            </p>
-                        )}
-                    </div>
                 </div>
             )}
 

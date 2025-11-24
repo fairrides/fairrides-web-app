@@ -2,10 +2,27 @@
 
 import { useState } from "react";
 import AuthForm from "../../../components/auth/auth-form";
-import { registerDriver, login } from "../../actions/auth";
+import { signUpDriver, signIn } from "../../../lib/auth";
 
 export default function DriverAuthPage() {
     const [mode, setMode] = useState<"login" | "register">("login");
+
+    const handleRegister = async (formData: FormData) => {
+        const result = await signUpDriver({
+            username: formData.get('username') as string,
+            password: formData.get('password') as string,
+        });
+        return result;
+    };
+
+    const handleLogin = async (formData: FormData) => {
+        const result = await signIn({
+            username: formData.get('username') as string,
+            password: formData.get('password') as string,
+            role: 'DRIVER',
+        });
+        return result;
+    };
 
     return (
         <main className="min-h-screen bg-black flex flex-col items-center justify-center p-4">
@@ -38,7 +55,8 @@ export default function DriverAuthPage() {
                     <AuthForm
                         type={mode}
                         role="DRIVER"
-                        action={mode === "login" ? login : registerDriver}
+                        onSubmit={mode === "login" ? handleLogin : handleRegister}
+                        redirectTo="/driver/onboarding"
                     />
                 </div>
             </div>

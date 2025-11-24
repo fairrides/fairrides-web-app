@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NYCRide - Fair Ride Sharing Platform
 
-## Getting Started
+A modern ride-sharing application built with Next.js, designed to be 20% cheaper than competitors while ensuring drivers keep 100% of their earnings.
 
-First, run the development server:
+## 🚀 Quick Start
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎯 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Dual User Roles**: Separate experiences for riders and drivers
+- **Smart Pricing**: AI-powered pricing engine (20% cheaper than competitors)
+- **Driver-First**: Drivers keep 100% of earnings
+- **Real-time Mapping**: Powered by Mapbox
+- **Mobile Ready**: Built with Capacitor for iOS/Android deployment
 
-## Learn More
+## 🧪 Testing the App
 
-To learn more about Next.js, take a look at the following resources:
+### Rider Signup
+1. Go to [http://localhost:3000/auth/rider](http://localhost:3000/auth/rider)
+2. Click "Sign Up"
+3. Fill in your details
+4. Start requesting rides!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Driver Signup
+1. Go to [http://localhost:3000/auth/driver](http://localhost:3000/auth/driver)
+2. Click "Sign Up"
+3. Complete onboarding
+4. Start earning!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💾 Data Storage
 
-## Deploy on Vercel
+Currently using **localStorage** for easy development and sharing:
+- ✅ No backend setup required
+- ✅ Works immediately after clone
+- ✅ Perfect for demos and development
+- ✅ Easy to migrate to Supabase/Firebase later
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All user data is stored locally in your browser. Clear your browser's localStorage to reset.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16 (React 19)
+- **Styling**: Tailwind CSS
+- **Maps**: Mapbox GL JS
+- **Mobile**: Capacitor
+- **Auth**: localStorage (development) → Supabase (production ready)
+
+## 📱 Building for Mobile
+
+```bash
+# Build the web app
+npm run build
+
+# Sync with Capacitor
+npx cap sync
+
+# Open in Android Studio
+npx cap open android
+```
+
+## 🔄 Migrating to Production Backend
+
+When ready to deploy, you can easily swap localStorage auth for:
+- **Supabase** (recommended, 5 min setup)
+- **Firebase** (Google's BaaS)
+- **Your own API** (custom backend)
+
+Just update `src/lib/auth.ts` - all UI components will work unchanged!
+
+## 🌍 Environment Variables
+
+Create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token_here
+```
+
+Get a free Mapbox token at [mapbox.com](https://www.mapbox.com)
+
+## 📄 License
+
+MIT
+
+## 🤝 Contributing
+
+This is a development project. Feel free to fork and experiment!

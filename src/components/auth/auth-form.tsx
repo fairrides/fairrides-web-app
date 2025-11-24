@@ -2,16 +2,19 @@
 
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface AuthFormProps {
     type: "login" | "register";
     role: "RIDER" | "DRIVER";
-    action: (formData: FormData) => Promise<any>;
+    onSubmit: (formData: FormData) => Promise<{ error?: string; success?: boolean }>;
+    redirectTo: string;
 }
 
-export default function AuthForm({ type, role, action }: AuthFormProps) {
+export default function AuthForm({ type, role, onSubmit, redirectTo }: AuthFormProps) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -19,15 +22,18 @@ export default function AuthForm({ type, role, action }: AuthFormProps) {
         setError(null);
 
         const formData = new FormData(e.currentTarget);
-        formData.append("role", role);
 
         try {
-            const result = await action(formData);
+            const result = await onSubmit(formData);
             if (result?.error) {
                 setError(result.error);
                 setIsLoading(false);
+            } else if (result?.success) {
+                // Redirect on success
+                router.push(redirectTo);
             }
         } catch (err) {
+            console.error('Client-side error:', err);
             setError("Something went wrong. Please try again.");
             setIsLoading(false);
         }

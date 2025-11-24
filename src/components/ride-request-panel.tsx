@@ -85,11 +85,11 @@ export default function RideRequestPanel({
             <div className="flex flex-col gap-3 relative">
                 {/* Pickup Input */}
                 <div className="relative">
-                    <div className="absolute left-3 top-3 w-2 h-2 rounded-full bg-gray-300" />
+                    <div className="absolute left-3 top-3 w-3 h-3 rounded-full bg-green-500 z-10" />
                     <input
                         type="text"
                         placeholder="Add a pickup location"
-                        className="w-full p-3 pl-8 bg-gray-50 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black transition-all"
+                        className="w-full p-3 pl-10 bg-white border-2 border-gray-200 rounded-lg text-sm font-semibold text-black placeholder:text-gray-400 placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                         value={pickupQuery}
                         onChange={(e) => {
                             setPickupQuery(e.target.value);
@@ -98,11 +98,11 @@ export default function RideRequestPanel({
                         onFocus={() => setActiveField("pickup")}
                     />
                     {activeField === "pickup" && pickupSuggestions.length > 0 && (
-                        <div className="absolute top-full left-0 w-full bg-white shadow-lg rounded-lg mt-1 z-20 max-h-48 overflow-y-auto">
+                        <div className="absolute top-full left-0 w-full bg-white shadow-lg rounded-lg mt-1 z-20 max-h-48 overflow-y-auto border border-gray-200">
                             {pickupSuggestions.map((place) => (
                                 <button
                                     key={place.id}
-                                    className="w-full text-left p-3 hover:bg-gray-100 text-sm"
+                                    className="w-full text-left p-3 hover:bg-gray-50 text-sm font-medium text-gray-900 border-b border-gray-100 last:border-b-0"
                                     onClick={() => handleSelect(place, "pickup")}
                                 >
                                     {place.name}
@@ -114,11 +114,11 @@ export default function RideRequestPanel({
 
                 {/* Dropoff Input */}
                 <div className="relative">
-                    <div className="absolute left-3 top-3 w-2 h-2 rounded-full bg-black" />
+                    <div className="absolute left-3 top-3 w-3 h-3 rounded-full bg-red-500 z-10" />
                     <input
                         type="text"
                         placeholder="Enter destination"
-                        className="w-full p-3 pl-8 bg-gray-50 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black transition-all"
+                        className="w-full p-3 pl-10 bg-white border-2 border-gray-200 rounded-lg text-sm font-semibold text-black placeholder:text-gray-400 placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
                         value={dropoffQuery}
                         onChange={(e) => {
                             setDropoffQuery(e.target.value);
@@ -127,11 +127,11 @@ export default function RideRequestPanel({
                         onFocus={() => setActiveField("dropoff")}
                     />
                     {activeField === "dropoff" && dropoffSuggestions.length > 0 && (
-                        <div className="absolute top-full left-0 w-full bg-white shadow-lg rounded-lg mt-1 z-20 max-h-48 overflow-y-auto">
+                        <div className="absolute top-full left-0 w-full bg-white shadow-lg rounded-lg mt-1 z-20 max-h-48 overflow-y-auto border border-gray-200">
                             {dropoffSuggestions.map((place) => (
                                 <button
                                     key={place.id}
-                                    className="w-full text-left p-3 hover:bg-gray-100 text-sm"
+                                    className="w-full text-left p-3 hover:bg-gray-50 text-sm font-medium text-gray-900 border-b border-gray-100 last:border-b-0"
                                     onClick={() => handleSelect(place, "dropoff")}
                                 >
                                     {place.name}

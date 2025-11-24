@@ -1,17 +1,41 @@
-import { getCurrentUser } from "../actions/auth";
+"use client";
+
+import { useEffect, useState } from "react";
 import PassengerClient from "./passenger-client";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { getCurrentUser } from "../../lib/auth";
 
-export default async function PassengerPage() {
-    const user = await getCurrentUser();
+export default function PassengerPage() {
+    const [user, setUser] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
-    if (!user) {
-        redirect("/auth/rider");
+    useEffect(() => {
+        async function checkAuth() {
+            const currentUser = await getCurrentUser();
+            if (!currentUser) {
+                router.push("/auth/rider");
+                return;
+            }
+            if (currentUser.role !== "RIDER") {
+                // Allow but could add warning
+            }
+            setUser(currentUser);
+            setLoading(false);
+        }
+        checkAuth();
+    }, [router]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-lg">Loading...</div>
+            </div>
+        );
     }
 
-    if (user.role !== "RIDER") {
-        // If a driver tries to access passenger page, maybe redirect or just show it?
-        // For now, let's allow it but maybe warn or just pass the user data
+    if (!user) {
+        return null;
     }
 
     return <PassengerClient user={user} />;
